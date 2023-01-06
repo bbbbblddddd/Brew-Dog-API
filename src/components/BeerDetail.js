@@ -1,5 +1,7 @@
 
-const BeerDetail = ({ beer }) => {
+const BeerDetail = ({ beer, faveButtonClicked }) => {
+
+
 
     return (
         <div className="beer-detail">
@@ -9,8 +11,9 @@ const BeerDetail = ({ beer }) => {
 
             <img src={beer.image_url} />
 
-            <button id='favourite-beer'>Add to favourites</button>
+            <button id='favourite-beer' onClick={() => faveButtonClicked(beer)}>Add to favourites</button>
         </div>
+
     )
 }
 
