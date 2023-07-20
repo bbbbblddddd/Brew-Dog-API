@@ -9,7 +9,7 @@ const BeerDetail = ({ beer, faveButtonClicked }) => {
             {beer.description}
             abv: {beer.abv}
 
-            <img src={beer.image_url} />
+            <img class="beer-image" src={beer.image_url} alt="detail of beer selected bottle" />
 
             <button id='favourite-beer' onClick={() => faveButtonClicked(beer)}>Add to favourites</button>
         </div>

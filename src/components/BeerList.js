@@ -10,9 +10,10 @@ const BeerList = ({ beers, onBeerClicked }) => {
     return (
 
         <div>
-            <ul>
-                {beerItems}
-            </ul>
+          
+            <ul className="beerlist">{beerItems}</ul>;
+
+    
         </div>
 
     )

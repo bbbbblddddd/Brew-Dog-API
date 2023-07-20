@@ -1,8 +1,8 @@
 import React from 'react';
 import Beer from './Beer';
 
-const FavouriteBeerList = ({ beers, faveButtonClicked }) => {
-    const faveBeers = beers && beers.map((beer) => {
+const FavouriteBeerList = ({ faveBeers, faveButtonClicked, removeButtonClicked }) => {
+    const faveBeersArray = faveBeers.map((beer) => {
         return <Beer beer={beer} faveButtonClicked={faveButtonClicked} key={beer.id} />
     });
 
@@ -11,7 +11,8 @@ const FavouriteBeerList = ({ beers, faveButtonClicked }) => {
 
         <div>
             <ul>
-                {faveBeers}
+                {faveBeersArray}
+                <button id='remove-beer'onClick={() => removeButtonClicked()}>Clear Favourites List</button>
             </ul>
         </div>
 
