@@ -9,6 +9,7 @@ const BeerContainer = () => {
   const [faveBeers, setFaveBeers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const getBeers = function () {
@@ -18,10 +19,10 @@ const BeerContainer = () => {
     };
 
     getBeers();
-  }, [currentPage, itemsPerPage]); // Include currentPage and itemsPerPage in the dependency array
-
+  }, [currentPage, itemsPerPage]);
   const onBeerClicked = function (beer) {
     setSelectedBeer(beer);
+    setIsModalOpen(true);
   };
 
   const faveButtonClicked = function (beer) {
@@ -44,9 +45,14 @@ const BeerContainer = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedBeer(null);
+  };
+  
+
   return (
     <div className="main-container">
-      {selectedBeer ? <BeerDetail beer={selectedBeer} faveButtonClicked={faveButtonClicked} /> : null}
       <BeerList beers={beers} onBeerClicked={onBeerClicked} />
       {faveBeers.length > 0 ? (
         <FavouriteBeerList
@@ -59,6 +65,13 @@ const BeerContainer = () => {
         {currentPage > 1 ? <button onClick={handlePreviousPage}>Previous</button> : null}
         {beers.length === itemsPerPage ? <button onClick={handleNextPage}>Next</button> : null}
       </div>
+      {isModalOpen && selectedBeer && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+          <BeerDetail beer={selectedBeer} faveButtonClicked={faveButtonClicked} closeModal={closeModal} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
